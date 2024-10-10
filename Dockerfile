@@ -30,7 +30,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # Ensure the node user has ownership and necessary permissions
-RUN chown -R node:node /app \
+RUN mkdir -p /app/.next/cache/images \
+    && chown -R node:node /app \
     && chmod -R 775 /app/.next/cache
 
 # Set working directory
