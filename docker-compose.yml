@@ -3,23 +3,25 @@
 name: discord-clone
 
 services:
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
+  postgres:
+    image: postgres:13
+    container_name: discord-clone-postgres
+    hostname: discord-clone-postgres
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - discord_clone_postgres:/var/lib/postgresql/data
     networks:
       - discord
 
   app:
     container_name: app
-    domainname: discord-clone-app
+    hostname: discord-clone-app
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,10 +31,10 @@ services:
     networks:
       - discord
     depends_on:
-      - mysql
+      - postgres
 
 volumes:
-  mysql_data:
+  discord_clone_postgres:
 
 networks:
   discord:

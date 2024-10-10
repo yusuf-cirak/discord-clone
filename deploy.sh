@@ -1,5 +1,7 @@
-export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
-export MYSQL_DATABASE=${MYSQL_DATABASE:-database}
+export POSTGRES_USER=${POSTGRES_USER:-root}
+export POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-root}
+export POSTGRES_DB=${POSTGRES_DB:-database}
+
 
 
 docker compose up --build --force-recreate -d
