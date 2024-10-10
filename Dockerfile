@@ -26,6 +26,13 @@ FROM node:18-alpine AS runner
 # Set NODE_ENV environment variable to production
 ENV NODE_ENV=production
 
+# Learn more here: https://nextjs.org/telemetry
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Ensure the node user has ownership and necessary permissions
+RUN chown -R node:node /app \
+    && chmod -R 775 /app/.next/cache
+
 # Set working directory
 WORKDIR /app
 

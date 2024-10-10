@@ -1,0 +1,39 @@
+# @format
+
+name: Deploy Next.js App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy Next.js App
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            rm -rf discord-clone
+            echo "Pulling the latest code..."
+            git pull https://github.com/yusuf-cirak/discord-clone discord-clone
+
+            cd discord-clone
+
+            echo "Creating secret .env file..."
+            dotenv=$(echo ${{ secrets.DOTENV }} | base64 --decode)
+
+            echo $dotenv > .env
+
+            echo "Setting environment variables for deployment script..."
+
+            export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
+            export MYSQL_DATABASE="${{ secrets.MYSQL_DATABASE }}"
+
+            bash deploy.sh
