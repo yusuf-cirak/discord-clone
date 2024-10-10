@@ -17,8 +17,18 @@ services:
     networks:
       - discord
 
-# Connection string:
-# mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@localhost:3306/${MYSQL_DATABASE}
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - discord
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:
