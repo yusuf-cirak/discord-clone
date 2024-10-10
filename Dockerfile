@@ -48,4 +48,4 @@ USER node
 
 
 # Command to run the Next.js app
-CMD ["bash","run.sh"]
+CMD ["sh","run.sh"]
