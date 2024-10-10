@@ -46,5 +46,8 @@ EXPOSE 3000
 # Run the Next.js app as a non-root user for security
 USER node
 
+
+RUN chmod +x run.sh
+
 # Command to run the Next.js app
-CMD ["./run.sh"]
+CMD ["sh","./run.sh"]
