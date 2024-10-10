@@ -27,9 +27,8 @@ jobs:
             cd discord-clone
 
             echo "Creating secret .env file..."
-            dotenv=$(echo ${{ secrets.DOTENV }} | base64 --decode)
 
-            echo $dotenv > .env
+            echo "${{ secrets.DOTENV }}" > .env
 
             echo "Setting environment variables for deployment script..."
 
