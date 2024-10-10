@@ -33,9 +33,6 @@ jobs:
 
             echo "Setting environment variables for deployment script..."
 
-            export MYSQL_ROOT_PASSWORD="${{ secrets.MYSQL_ROOT_PASSWORD }}"
-            export MYSQL_DATABASE="${{ secrets.MYSQL_DATABASE }}"
-
             export POSTGRES_USER="${{ secrets.POSTGRES_USER }}"
             export POSTGRES_PASSWORD="${{ secrets.POSTGRES_PASSWORD }}"
             export POSTGRES_DB="${{ secrets.POSTGRES_DB }}"
