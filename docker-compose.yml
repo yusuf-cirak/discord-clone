@@ -19,6 +19,7 @@ services:
 
   app:
     container_name: app
+    domainname: discord-clone-app
     build:
       context: .
       dockerfile: Dockerfile
