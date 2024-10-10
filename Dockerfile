@@ -47,7 +47,5 @@ EXPOSE 3000
 USER node
 
 
-RUN chmod +x run.sh
-
 # Command to run the Next.js app
-CMD ["sh","./run.sh"]
+CMD ["bash","run.sh"]
